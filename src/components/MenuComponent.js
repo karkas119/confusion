@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
-import DishDetailComponent from './DishDetailComponent'
+import { DISHES} from "../shared/dishes";
+import DishDetailComponent from './DishDetailComponent';
+import { Switch, Route, Redirect} from 'react-router-dom';
 
 class Menu extends Component {
-
     constructor(props){
         super(props);
         this.state = {
@@ -28,7 +29,6 @@ class Menu extends Component {
         }
     }
 
-
     render(){
         const Menu = this.props.dishes.map((dish) => {
             return (
@@ -49,9 +49,10 @@ class Menu extends Component {
                 <div className='row'>
                     {Menu}
                 </div>
-                <div>
+                 <div>
                     {this.renderDish(this.state.selectedDish)}
                 </div>
+
             </div>
 
         );

@@ -4,6 +4,11 @@ import './App.css';
 import { DISHES } from './shared/dishes';
 import Header from "./components/HeaderComponent";
 import Footer from "./components/FooterComponent";
+import Home from "./components/HomeComponent";
+import { BrowserRouter} from 'react-router-dom';
+import DishDetailComponent from "./components/DishDetailComponent";
+import {Switch, Route, Redirect} from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -17,12 +22,17 @@ class App extends Component {
 
     render() {
         return (
+            <BrowserRouter>
             <div>
-                <Header />
-                <Menu dishes={this.state.dishes} />
-                <Footer />
-
+                <Header/>
+                <Switch>
+                    <Route path='/home' component = { Home } />
+                    <Route exact path = '/menu' component = {() => <Menu dishes={this.state.dishes}/>} />
+                    <Redirect to = '/home'/>
+                </Switch>
+                <Footer/>
             </div>
+            </BrowserRouter>
         );
     }
 }
