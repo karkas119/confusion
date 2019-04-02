@@ -12,8 +12,7 @@ import {
     ModalBody,
     Col,
     Row,
-    Label,
-    Input, Button
+     Button
 } from 'reactstrap';
 import {Control, LocalForm, Errors} from 'react-redux-form';
 import {Link} from 'react-router-dom';
@@ -87,7 +86,7 @@ class DishDetailComponent extends Component {
                             <CardBody>
                                 <CardTitle>Comments</CardTitle>
                                 <CardText>{COMMENTS}</CardText>
-                                <button outline onClick={this.toggleModal} className='btn-primary'>
+                                <button onClick={this.toggleModal} className='btn-primary'>
                                     <span className='fa fa-sign-in fa-lg'></span>Submit Comment
                                 </button>
                             </CardBody>

@@ -3,25 +3,23 @@ import Menu from './MenuComponent';
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import Home from "./HomeComponent";
+import AboutUs from './AboutComponent';
 import Contact from './ContactComponent';
 import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
 import DishDetailComponent from "./DishDetailComponent";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 
-    const mapStateToProps = state => {
-        return {
-            dishes: state.dishes,
-            comments: state.comment,
-            promotions: state.promotions,
-            leaders: state.leaders
-        }
-    };
+const mapStateToProps = state => {
+    return {
+        dishes: state.dishes,
+        comments: state.comment,
+        promotions: state.promotions,
+        leaders: state.leaders
+    }
+};
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const HomePage = () => {
@@ -45,6 +43,7 @@ class Main extends Component {
                 <Header/>
                 <Switch>
                     <Route path='/home' component={HomePage}/>
+                    <Route path='/aboutus' component={() => <AboutUs leaders = {this.props.leaders}/>}/>
                     <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes}/>}/>
                     <Route path='/menu/:dishId' component={DishWithId}/>
                     <Route exact path='/contact' component={Contact}/>
@@ -56,4 +55,5 @@ class Main extends Component {
 
     }
 }
+
 export default withRouter(connect(mapStateToProps)(Main));
