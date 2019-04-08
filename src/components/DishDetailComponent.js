@@ -41,7 +41,6 @@ class DishDetailComponent extends Component {
     handleLogin(value) {
         this.toggleModal();
         console.log(value)
-
     }
 
     render() {
