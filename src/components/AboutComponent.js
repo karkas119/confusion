@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Media,} from 'reactstrap';
+import {baseUrl} from "../shared/baseUrl";
 
 
 class AboutUs extends Component{
@@ -10,7 +11,7 @@ class AboutUs extends Component{
                 <Media>
 
                     <Media left>
-                        <img src={item.image} alt='not found'/>
+                        <img src={baseUrl + item.image} alt='not found'/>
                     </Media>
                     <Media body>
                         <Media heading>
