@@ -3,28 +3,39 @@ import {Media,} from 'reactstrap';
 import {baseUrl} from "../shared/baseUrl";
 
 
-class AboutUs extends Component{
-    render(){
-        const leader = this.props.leaders.map((item) => {
-        return (
-                <div key={item.id} className='col-12 mt-3'>
-                <Media>
+class AboutUs extends Component {
+    render() {
+        if (this.props.leadersErrMess) {
+            return (
+                <div className='container'>
+                    <div className='row'>
+                        <h4>{this.props.leadersErrMess}</h4>
+                    </div>
+                </div>
 
-                    <Media left>
-                        <img src={baseUrl + item.image} alt='not found'/>
-                    </Media>
-                    <Media body>
-                        <Media heading>
-                            {item.name}
+
+            )
+        }
+        const leader = this.props.leaders.map((item) => {
+            return (
+                <div key={item.id} className='col-12 mt-3'>
+                    <Media>
+
+                        <Media left>
+                            <img src={baseUrl + item.image} alt='not found'/>
                         </Media>
-                        <h6>{item.designation}</h6>
-                        {item.description}
+                        <Media body>
+                            <Media heading>
+                                {item.name}
+                            </Media>
+                            <h6>{item.designation}</h6>
+                            {item.description}
+                        </Media>
                     </Media>
-                </Media>
-            </div>
-        )
-    });
-        return(
+                </div>
+            )
+        });
+        return (
             <div className='container'>
                 <div className='row'>
                     {leader}
@@ -33,7 +44,6 @@ class AboutUs extends Component{
         )
     }
 }
-
 
 
 export default AboutUs;
