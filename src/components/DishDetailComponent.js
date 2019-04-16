@@ -16,41 +16,33 @@ import {
 } from 'reactstrap';
 import {Control, LocalForm, Errors} from 'react-redux-form';
 import {Link} from 'react-router-dom';
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
+import {Loading} from "./LoadingComponent";
+import {baseUrl} from "../shared/baseUrl";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
 
 
-function Comments({comment, addComment, dishId}) {
-
+function Comments({comment}) {
     return (
         <div>
-
-                {comment.map((comment) => {
-                    return (
-                        <div key={comment.id}>
-                            <p>{comment.comment}</p>
-                            <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: '2-digit'
-                            }).format(new Date(Date.parse(comment.date)))}</p>
-                        </div>
-                    );
-                })}
-
-
-
-
+        <div>{comment.map((comment) => {
+            return (
+                <div key={comment.id}>
+                    <p>{comment.comment}</p>
+                    <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit'
+                    }).format(new Date(Date.parse(comment.date)))}</p>
+                </div>
+            );
+        })}
         </div>
-
-
+            </div>
     )
 }
-
 
 class DishDetailComponent extends Component {
     constructor(props) {
@@ -71,28 +63,28 @@ class DishDetailComponent extends Component {
 
     handleLogin(value) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, value.rating, value.author, value.comment);
-        console.log('this.props.comment =' + this.props.addComment);
+        this.props.postComment(this.props.dishId, value.rating, value.author, value.comment);
+        console.log('this.value.comment =' + value.comment);
 
     }
 
     render() {
-        if (this.props.isLoading){
+        if (this.props.isLoading) {
             return (
                 <div className='container'>
                     <div className='row'>
-                        <Loading />
+                        <Loading/>
                     </div>
                 </div>
             )
-        } else if (this.props.errMess){
-           return (
+        } else if (this.props.errMess) {
+            return (
                 <div className='container'>
                     <div className='row'>
                         <h4>{this.props.errMess}</h4>
                     </div>
                 </div>
-           )
+            )
         } else
 
 
@@ -110,7 +102,8 @@ class DishDetailComponent extends Component {
                     <div key={this.props.id} className='row'>
                         <div className='col-12 col-md-5 m-1'>
                             <Card>
-                                <CardImg width='100%' src={baseUrl + this.props.dishes.image} alt={this.props.dishes.name}/>
+                                <CardImg width='100%' src={baseUrl + this.props.dishes.image}
+                                         alt={this.props.dishes.name}/>
                                 <CardBody>
                                     <CardTitle>{this.props.dishes.name}</CardTitle>
                                     <CardText>{this.props.dishes.description}</CardText>
@@ -122,10 +115,7 @@ class DishDetailComponent extends Component {
                                 <CardBody>
                                     <CardTitle>Comments</CardTitle>
                                     <CardText>
-                                        <Comments comment={this.props.comment}
-                                                  addComment={this.props.addComment}
-
-                                        />
+                                        <Comments comment={this.props.comment} />
                                     </CardText>
 
                                     <button onClick={this.toggleModal} className='btn-primary'>
