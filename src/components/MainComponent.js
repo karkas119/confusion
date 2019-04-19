@@ -85,8 +85,6 @@ class Main extends Component {
         return (
             <div>
                 <Header/>
-                <TransitionGroup>
-                    <CSSTransition key={this.props.location.key} classNames='page' timeout={300}>
                         <Switch>
                             <Route path='/home' component={HomePage}/>
                             <Route path='/aboutus' component={() => < AboutUs leaders={this.props.leaders.leaders}
@@ -97,8 +95,6 @@ class Main extends Component {
                                    component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}/>}/>
                             <Redirect to='/home'/>
                         </Switch>
-                    </CSSTransition>
-                </TransitionGroup>
                 <Footer/>
             </div>
         )
